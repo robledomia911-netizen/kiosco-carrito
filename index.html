@@ -3,13 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mi proyecto</title>
+  <title>Kiosco — Carrito y ticket</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mi proyecto ya está en internet</h1>
-  <p id="mensaje">Todavía no apretaste el botón.</p>
-  <button id="boton">Apretame</button>
+  <h1>Kiosco</h1>
+
+  <section class="compra">
+    <div class="campo">
+      <label for="producto">Producto</label>
+      <select id="producto"></select>
+    </div>
+
+    <div class="campo campo-cantidad">
+      <label for="cantidad">Cantidad</label>
+      <input id="cantidad" type="number" min="1" step="1" value="1" inputmode="numeric">
+    </div>
+
+    <button id="agregar" class="principal">Agregar</button>
+  </section>
+
+  <p id="aviso" class="aviso" role="alert" hidden></p>
+
+  <h2>Carrito</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th class="num">Cant.</th>
+        <th class="num">Precio</th>
+        <th class="num">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody id="filas"></tbody>
+  </table>
+
+  <div class="totales">
+    <p class="linea"><span>Subtotal</span><span id="subtotal">$ 0,00</span></p>
+    <p class="linea descuento" id="linea-descuento" hidden>
+      <span>Descuento 10%</span><span id="descuento">-$ 0,00</span>
+    </p>
+    <p class="total">Total a pagar: <strong id="total">$ 0,00</strong></p>
+  </div>
+
+  <p class="nota">10% de descuento en compras mayores a $ 5.000.</p>
+
+  <button id="vaciar" class="secundario">Vaciar carrito</button>
+
   <script src="app.js"></script>
 </body>
 </html>
