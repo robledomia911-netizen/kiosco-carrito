@@ -16,6 +16,7 @@ var botonVaciar = document.getElementById("vaciar");
 var tbodyFilas = document.getElementById("filas");
 var spanTotal = document.getElementById("total");
 var spanSubtotal = document.getElementById("subtotal");
+var spanIva = document.getElementById("iva");
 var spanDescuento = document.getElementById("descuento");
 var lineaDescuento = document.getElementById("linea-descuento");
 var parrafoAviso = document.getElementById("aviso");
@@ -98,13 +99,16 @@ function dibujarCarrito() {
     });
   }
 
-  var subtotal = calcularSubtotal();
-  var descuento = subtotal > 5000 ? subtotal * 0.1 : 0;
+  var bruto = calcularSubtotal();
+  var sinIva = Math.round((bruto / 1.21) * 100) / 100;
+  var iva = bruto - sinIva;
+  var descuento = bruto > 5000 ? bruto * 0.1 : 0;
 
-  spanSubtotal.textContent = pesos(subtotal);
+  spanSubtotal.textContent = pesos(sinIva);
+  spanIva.textContent = pesos(iva);
   spanDescuento.textContent = "-" + pesos(descuento);
   lineaDescuento.hidden = descuento === 0;
-  spanTotal.textContent = pesos(subtotal - descuento);
+  spanTotal.textContent = pesos(bruto - descuento);
 }
 
 function agregarAlCarrito() {
